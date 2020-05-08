@@ -1,0 +1,13 @@
+# Simple example, includes build
+# Uses golang image defaults:
+#   GOPATH=/go
+#   PATH=/go/bin:/usr/local/go/bin:...
+
+FROM golang
+LABEL org.opencontainers.image.authors="me@example.com"
+WORKDIR /go/src/hello
+COPY ../hello.go ./
+RUN go install .
+ENTRYPOINT ["hello"]
+CMD ["world"]
+

@@ -1,0 +1,7 @@
+# Exclude everything by default
+*
+
+# Include what is needed to build
+!hello-box.go
+!go.mod
+!go.sum

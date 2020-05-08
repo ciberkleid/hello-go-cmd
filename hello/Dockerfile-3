@@ -1,0 +1,13 @@
+# Multi-stage example: copy binary to smaller image
+
+FROM golang AS build
+WORKDIR /app
+COPY ../hello.go ./
+RUN GOOS=linux go build hello.go
+
+FROM scratch
+LABEL org.opencontainers.image.authors="me@example.com"
+COPY --from=build /app/hello /
+ENTRYPOINT ["/hello"]
+CMD ["world"]
+

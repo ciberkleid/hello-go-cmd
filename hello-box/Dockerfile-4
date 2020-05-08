@@ -1,0 +1,25 @@
+# Labels
+
+ARG AUTHORS="[{\"name\":\"Example Org Dev Team\",\"email\":\"devteam@example.com\",\"url\":\"https://example.com\"}]"
+ARG VERSION="${VERSION:-UNASSIGNED}"
+
+FROM golang:1.14.2 AS build
+WORKDIR /app
+#RUN apt-get update && apt-get install -y --no-install-recommends \
+#        cloc=1.8* \
+#    && rm -rf /var/lib/apt/lists/*
+COPY go.mod go.sum ./
+RUN go mod download -json
+COPY ../hello-box.go .
+#RUN cloc hello-box.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    go build -a -installsuffix cgo -o hello
+
+FROM scratch
+ARG VERSION
+LABEL org.opencontainers.image.authors="me@example.com"
+LABEL org.opencontainers.image.version=${VERSION}
+COPY --from=build /app/hello /
+ENTRYPOINT ["/hello"]
+CMD ["world"]
+
