@@ -19,7 +19,7 @@ func main () {
     }
 
     if value == "-h" || value == "--help" {
-        fmt.Println("USAGE: Provide a string and we'll say hello!\n       [Command-line arg or env var HELLO_ARG]")
+        fmt.Println("USAGE: Provide a string and we'll say hello!")
     } else {
         output := "Hello, " + value + "!"
         output, _ = strutil.DrawCustomBox(output, 40, strutil.Center, strutil.SimpleBox9Slice(), "\n")
