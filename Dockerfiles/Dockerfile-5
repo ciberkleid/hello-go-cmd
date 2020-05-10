@@ -1,25 +1,14 @@
-# Maximize re-use of cached layers:
-#   - order operations by increasing frequency of change
-#   - decouple operations with differing frequency of change
-#   - avoid installing unnecessary packages (--no-install-recommends)
-#   - include package version to enable "cache-busting"
-#   - remove package manager cache to reduce image size
-
-FROM golang AS build
-WORKDIR /app
+FROM golang:1.14.2
+WORKDIR /workspace
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        cloc=1.8* \
+        tini=0.18* \
     && rm -rf /var/lib/apt/lists/*
+COPY run.sh .
+RUN chmod +x run.sh
 COPY go.mod go.sum ./
 RUN go mod download -json
-COPY ../hello-box.go .
-RUN cloc hello-box.go
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
-    go build -a -installsuffix cgo -o hello
-
-FROM scratch
-LABEL org.opencontainers.image.authors="me@example.com"
-COPY --from=build /app/hello /
-ENTRYPOINT ["/hello"]
+COPY hello.go .
+RUN go install
+USER 1002
+ENTRYPOINT ["tini", "-g", "./run.sh"]
 CMD ["world"]
-

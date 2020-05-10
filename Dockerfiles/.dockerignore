@@ -2,6 +2,7 @@
 *
 
 # Include what is needed to build
-!hello-box.go
+!hello.go
 !go.mod
 !go.sum
+!run.sh

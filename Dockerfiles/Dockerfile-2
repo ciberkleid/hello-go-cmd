@@ -1,13 +1,9 @@
-# Simple example, includes build
-# Uses golang image defaults:
-#   GOPATH=/go
-#   PATH=/go/bin:/usr/local/go/bin:...
-
 FROM golang
-LABEL org.opencontainers.image.authors="me@example.com"
-WORKDIR /go/src/hello
-COPY ../hello.go ./
-RUN go install .
-ENTRYPOINT ["hello"]
+WORKDIR /workspace
+COPY . .
+RUN go install
+RUN apt-get update
+RUN apt-get install tini
+RUN chmod +x run.sh
+ENTRYPOINT ["tini", "-g", "./run.sh"]
 CMD ["world"]
-

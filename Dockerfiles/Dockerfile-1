@@ -1,7 +1,8 @@
 FROM golang
-LABEL com.example=hello
 WORKDIR /workspace
 COPY . .
 RUN go install
-ENTRYPOINT ["hello"]
+#ENTRYPOINT ["hello"]
+ENTRYPOINT ["/bin/sh", "-c", "hello \"${0} ${*}\" \
+            && sleep infinity"]
 CMD ["world"]
