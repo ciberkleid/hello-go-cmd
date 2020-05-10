@@ -1,7 +1,6 @@
-# Simple example, requires pre-built binary
-
-FROM scratch
-LABEL org.opencontainers.image.authors="me@example.com"
-COPY hello /
-CMD ["/hello"]
-
+FROM golang
+LABEL com.example=hello
+WORKDIR /workspace
+COPY . .
+RUN go install
+ENTRYPOINT ["hello"]
