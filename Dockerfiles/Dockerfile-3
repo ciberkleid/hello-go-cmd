@@ -9,5 +9,5 @@ COPY go.mod go.sum ./
 RUN go mod download -json
 COPY hello.go .
 RUN go install
-ENTRYPOINT ["tini", "-g", "./run.sh"]
+ENTRYPOINT ["tini", "-g", "--", "./run.sh"]
 CMD ["world"]

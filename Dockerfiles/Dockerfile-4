@@ -10,5 +10,5 @@ RUN go mod download -json
 COPY hello.go .
 RUN go install
 USER 1002
-ENTRYPOINT ["tini", "-g", "./run.sh"]
+ENTRYPOINT ["tini", "-g", "--", "./run.sh"]
 CMD ["world"]

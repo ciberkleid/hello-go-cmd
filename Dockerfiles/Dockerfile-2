@@ -5,5 +5,5 @@ RUN go install
 RUN apt-get update
 RUN apt-get install tini
 RUN chmod +x run.sh
-ENTRYPOINT ["tini", "-g", "./run.sh"]
+ENTRYPOINT ["tini", "-g", "--", "./run.sh"]
 CMD ["world"]
