@@ -2,8 +2,10 @@ package main
 
 import (
     "fmt"
-    "os"
     "github.com/ozgio/strutil"
+    "os"
+    "strconv"
+    "time"
 )
 
 func main () {
@@ -26,12 +28,17 @@ func main () {
         fmt.Println(output)
     }
 
-    //For builds with CNB/Paketo:
-    //    Using base run-image, two options (command overrides env var):
-    //        docker run -e HELLO_ARG=world hello:base "hello sunshine"
-    //    Using tiny run image, use:
-    //        docker run -e HELLO_BOX_ARG=world hello:tiny
-
+    IsSleepEnabled, _ := strconv.ParseBool(os.Getenv("HELLO_SLEEP"))
+    if IsSleepEnabled {
+        fmt.Printf("Sleeping 30 seconds...\n")
+        time.Sleep(30 * time.Second)
+    }
 
 }
+
+//For builds with CNB/Paketo:
+//    Using base run-image, two options (command overrides env var):
+//        docker run -e HELLO_ARG=world hello:base "hello sunshine"
+//    Using tiny run image, use:
+//        docker run -e HELLO_BOX_ARG=world hello:tiny
 

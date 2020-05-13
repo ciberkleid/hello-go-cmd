@@ -1,0 +1,12 @@
+FROM golang
+WORKDIR /workspace
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        tini=0.18* \
+    && rm -rf /var/lib/apt/lists/*
+COPY go.mod go.sum ./
+RUN go mod download -json
+COPY hello.go .
+RUN go install
+USER 1002
+ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\""]
+CMD ["world"]
