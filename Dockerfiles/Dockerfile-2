@@ -1,8 +1,8 @@
-FROM golang
+FROM golang:1.14.2
+LABEL maintainer="me@example.com"
 WORKDIR /workspace
 COPY . .
 RUN go install
-RUN apt-get update
-RUN apt-get install tini
-ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\" && sleep infinity"]
+USER 1002
+ENTRYPOINT ["hello"]
 CMD ["world"]

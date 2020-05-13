@@ -1,0 +1,14 @@
+FROM golang:1.14.2 AS build
+LABEL maintainer="me@example.com"
+WORKDIR /workspace
+COPY go.mod go.sum ./
+RUN go mod download -json
+COPY hello.go .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+    go build -a -installsuffix cgo -o hello
+
+FROM scratch
+COPY --from=build /workspace/hello /
+USER 1002
+ENTRYPOINT ["/hello"]
+CMD ["world"]

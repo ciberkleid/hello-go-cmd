@@ -1,11 +1,8 @@
-FROM golang
+FROM golang:1.14.2
+LABEL maintainer="me@example.com"
 WORKDIR /workspace
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        tini=0.18* \
-    && rm -rf /var/lib/apt/lists/*
-COPY go.mod go.sum ./
-RUN go mod download -json
-COPY hello.go .
+COPY . .
 RUN go install
-ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\""]
+USER 1002
+ENTRYPOINT ["sh", "-c", "hello \"${0} ${*}\""]
 CMD ["world"]
