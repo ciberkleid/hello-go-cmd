@@ -5,7 +5,7 @@ COPY . .
 RUN go install
 RUN apt-get update
 RUN apt-get install tini
-USER 1002
+USER 1001
 #ENTRYPOINT ["sh", "-c", "exec hello \"${0} ${*}\""]
 ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\""]
 CMD ["world"]

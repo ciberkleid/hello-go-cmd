@@ -9,6 +9,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
 
 FROM scratch
 COPY --from=build /workspace/hello /
-USER 1002
+USER 1001
 ENTRYPOINT ["/hello"]
 CMD ["world"]

@@ -3,6 +3,5 @@ LABEL maintainer="me@example.com"
 WORKDIR /workspace
 COPY . .
 RUN go install
-USER 1001
 ENTRYPOINT ["hello"]
 CMD ["world"]

@@ -1,8 +1,0 @@
-FROM golang
-WORKDIR /workspace
-COPY . .
-RUN go install
-#ENTRYPOINT ["hello"]
-ENTRYPOINT ["/bin/sh", "-c", "hello \"${0} ${*}\" \
-           && sleep infinity"]
-CMD ["world"]
