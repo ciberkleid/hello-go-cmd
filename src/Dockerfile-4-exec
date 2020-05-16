@@ -1,8 +1,0 @@
-FROM golang:1.14.2
-LABEL maintainer="me@example.com"
-WORKDIR /workspace
-COPY . .
-RUN go install
-USER 1002
-ENTRYPOINT ["sh", "-c", "exec hello \"${0} ${*}\""]
-CMD ["world"]
