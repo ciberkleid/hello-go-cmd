@@ -1,7 +1,0 @@
-# Exclude everything by default
-*
-
-# Include what is needed to build
-!hello.go
-!go.mod
-!go.sum
