@@ -8,5 +8,6 @@ COPY go.mod go.sum ./
 RUN go mod download -json
 COPY hello.go .
 RUN go install
+USER 1001
 ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\""]
 CMD ["world"]
