@@ -1,11 +1,12 @@
 FROM golang
 LABEL maintainer="me@example.com"
 WORKDIR /workspace
-COPY . .
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        tini=0.18* \
+    && rm -rf /var/lib/apt/lists/*
+COPY go.mod go.sum ./
+RUN go mod download -json
+COPY hello.go .
 RUN go install
-RUN apt-get update
-RUN apt-get install tini
-USER 1001
-#ENTRYPOINT ["sh", "-c", "exec hello \"${0} ${*}\""]
 ENTRYPOINT ["tini", "-g", "--", "sh", "-c", "hello \"${0} ${*}\""]
 CMD ["world"]

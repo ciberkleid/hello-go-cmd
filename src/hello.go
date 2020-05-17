@@ -30,8 +30,8 @@ func main () {
 
     IsSleepEnabled, _ := strconv.ParseBool(os.Getenv("HELLO_SLEEP"))
     if IsSleepEnabled {
-        fmt.Printf("Sleeping 60 seconds...\n")
-        time.Sleep(60 * time.Second)
+        fmt.Printf("Sleeping 90 seconds...\n")
+        time.Sleep(90 * time.Second)
     }
 
 }
