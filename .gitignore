@@ -1,3 +1,7 @@
+# Miscellaneous
+src/.dockerignore
+src/Dockerfile*
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
