@@ -1,6 +1,7 @@
 # Miscellaneous
 src/.dockerignore
 src/Dockerfile*
+src/README.md
 
 # Binaries for programs and plugins
 *.exe
