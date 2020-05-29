@@ -5,7 +5,7 @@ metadata:
 spec:
   builder:
     name: paketo-builder
-    kind: ClusterBuilder
+    kind: Builder
   serviceAccount: kpack-service-account
   cacheSize: "1.5Gi"
   source:
