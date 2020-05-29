@@ -4,7 +4,7 @@ metadata:
   name: hello-go
 spec:
   builder:
-    name: paketo
+    name: paketo-builder
     kind: ClusterBuilder
   serviceAccount: kpack-service-account
   cacheSize: "1.5Gi"

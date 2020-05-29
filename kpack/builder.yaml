@@ -1,6 +1,6 @@
 apiVersion: build.pivotal.io/v1alpha1
-kind: ClusterBuilder
+kind: Builder
 metadata:
-  name: paketo
+  name: paketo-builder
 spec:
   image: gcr.io/paketo-buildpacks/builder:base
