@@ -1,0 +1,16 @@
+apiVersion: build.pivotal.io/v1alpha1
+kind: Image
+metadata:
+  name: hello-go
+spec:
+  builder:
+    name: paketo
+    kind: ClusterBuilder
+  serviceAccount: kpack-service-account
+  cacheSize: "1.5Gi"
+  source:
+    git:
+      url: https://github.com/ciberkleid/hello-go
+      revision: master
+    subPath: src
+  tag: ciberkleid/hello-go:latest
