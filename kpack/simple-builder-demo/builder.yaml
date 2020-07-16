@@ -3,4 +3,4 @@ kind: Builder
 metadata:
   name: paketo-builder
 spec:
-  image: gcr.io/paketo-buildpacks/builder:base
+  image: gcr.io/paketo-buildpacks/builder:base-platform-api-0.3
