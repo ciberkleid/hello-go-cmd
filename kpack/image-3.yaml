@@ -5,7 +5,7 @@ metadata:
 spec:
   builder:
     name: demo-builder
-    kind: ClusterBuilder
+    kind: Builder
   serviceAccount: kpack-bot
   #cacheSize: "1.5Gi"
   source:

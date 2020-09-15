@@ -4,7 +4,9 @@ metadata:
   name: demo-store
 spec:
   sources:
-    - image: gcr.io/paketo-buildpacks/builder:base-platform-api-0.3
+    - image: gcr.io/paketo-buildpacks/go
+    - image: gcr.io/paketo-buildpacks/java
+    - image: gcr.io/paketo-buildpacks/nodejs
 ---
 apiVersion: kpack.io/v1alpha1
 kind: ClusterStack
@@ -13,19 +15,23 @@ metadata:
 spec:
   id: "io.buildpacks.stacks.bionic"
   buildImage:
-    image: "gcr.io/paketo-buildpacks/build:0.0.24-base-cnb"
+    image: "gcr.io/paketo-buildpacks/build:0.0.81-base-cnb"
   runImage:
-    image: "gcr.io/paketo-buildpacks/run:0.0.24-base-cnb"
+    image: "gcr.io/paketo-buildpacks/run:0.0.81-base-cnb"
 ---
 apiVersion: kpack.io/v1alpha1
-kind: ClusterBuilder
+kind: Builder
 metadata:
   name: demo-builder
 spec:
   tag: ciberkleid/demo-builder
   serviceAccount: kpack-bot
-  stack: demo-stack
-  store: demo-store
+  stack:
+    name: demo-stack
+    kind: ClusterStack
+  store:
+    name: demo-store
+    kind: ClusterStore
   order:
     - group:
         - id: paketo-buildpacks/go
@@ -33,9 +39,3 @@ spec:
         - id: paketo-buildpacks/java
     - group:
         - id: paketo-buildpacks/nodejs
-    - group:
-        - id: paketo-buildpacks/dotnet-core
-    - group:
-        - id: paketo-buildpacks/nginx
-    - group:
-        - id: paketo-buildpacks/procfile
