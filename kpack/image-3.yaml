@@ -1,15 +1,15 @@
-apiVersion: build.pivotal.io/v1alpha1
+apiVersion: kpack.io/v1alpha1
 kind: Image
 metadata:
-  name: demo-img-2
+  name: demo-img-3
 spec:
   builder:
     name: demo-builder
-    kind: CustomBuilder
+    kind: ClusterBuilder
   serviceAccount: kpack-bot
   #cacheSize: "1.5Gi"
   source:
     git:
       url: https://github.com/ciberkleid/hello-go
       revision: master
-  tag: ciberkleid/demo-img-2
+  tag: ciberkleid/demo-img-3

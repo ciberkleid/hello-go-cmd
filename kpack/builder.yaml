@@ -1,13 +1,13 @@
-apiVersion: experimental.kpack.pivotal.io/v1alpha1
-kind: Store
+apiVersion: kpack.io/v1alpha1
+kind: ClusterStore
 metadata:
   name: demo-store
 spec:
   sources:
     - image: gcr.io/paketo-buildpacks/builder:base-platform-api-0.3
 ---
-apiVersion: experimental.kpack.pivotal.io/v1alpha1
-kind: Stack
+apiVersion: kpack.io/v1alpha1
+kind: ClusterStack
 metadata:
   name: demo-stack
 spec:
@@ -17,8 +17,8 @@ spec:
   runImage:
     image: "gcr.io/paketo-buildpacks/run:0.0.24-base-cnb"
 ---
-apiVersion: experimental.kpack.pivotal.io/v1alpha1
-kind: CustomBuilder
+apiVersion: kpack.io/v1alpha1
+kind: ClusterBuilder
 metadata:
   name: demo-builder
 spec:
