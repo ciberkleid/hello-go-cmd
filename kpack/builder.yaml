@@ -1,12 +1,3 @@
-apiVersion: kpack.io/v1alpha1
-kind: ClusterStore
-metadata:
-  name: demo-store
-spec:
-  sources:
-    - image: gcr.io/paketo-buildpacks/go
-    - image: gcr.io/paketo-buildpacks/java
-    - image: gcr.io/paketo-buildpacks/nodejs
 ---
 apiVersion: kpack.io/v1alpha1
 kind: ClusterStack
@@ -18,6 +9,16 @@ spec:
     image: "paketobuildpacks/build:1.0.18-base-cnb"
   runImage:
     image: "paketobuildpacks/run:1.0.18-base-cnb"
+---
+apiVersion: kpack.io/v1alpha1
+kind: ClusterStore
+metadata:
+  name: demo-store
+spec:
+  sources:
+    - image: gcr.io/paketo-buildpacks/go
+    - image: gcr.io/paketo-buildpacks/java
+    - image: gcr.io/paketo-buildpacks/nodejs
 ---
 apiVersion: kpack.io/v1alpha1
 kind: Builder
