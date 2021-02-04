@@ -15,9 +15,9 @@ metadata:
 spec:
   id: "io.buildpacks.stacks.bionic"
   buildImage:
-    image: "gcr.io/paketo-buildpacks/build:0.0.81-base-cnb"
+    image: "paketobuildpacks/build:1.0.18-base-cnb"
   runImage:
-    image: "gcr.io/paketo-buildpacks/run:0.0.81-base-cnb"
+    image: "paketobuildpacks/run:1.0.18-base-cnb"
 ---
 apiVersion: kpack.io/v1alpha1
 kind: Builder

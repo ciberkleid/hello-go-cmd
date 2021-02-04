@@ -7,9 +7,9 @@ spec:
     name: demo-builder
     kind: Builder
   serviceAccount: kpack-bot
-  #cacheSize: "1.5Gi"
   source:
     git:
       url: https://github.com/ciberkleid/hello-go
-      revision: master
+      revision: main
+    subPath: src
   tag: ciberkleid/demo-img-2
